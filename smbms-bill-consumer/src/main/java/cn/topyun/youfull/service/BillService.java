@@ -19,7 +19,7 @@ public interface BillService {
 
 //    Map<String,Object> findAllBills(@RequestParam(value = "pageNum") Integer pageNum,@RequestParam(value = "provider")  Provider provider);
     @RequestMapping(value = "/bill/billList", method = RequestMethod.GET)
-    public Map toBillMain(@RequestParam(value = "num") String num);
+    Map toBillMain(@RequestParam(value = "num") String num);
     /**
      * 按条件分页
      * @param pageNum

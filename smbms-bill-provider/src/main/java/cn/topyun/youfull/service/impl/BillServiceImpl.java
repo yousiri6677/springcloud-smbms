@@ -6,6 +6,7 @@ import cn.youfull.entity.BillEx;
 import cn.youfull.entity.Provider;
 import cn.topyun.youfull.service.BillService;
 import cn.topyun.youfull.service.ProviderService;
+import cn.youfull.util.TimeFormat;
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -44,6 +45,7 @@ public class BillServiceImpl implements BillService {
         for (Bill bill : billMapper.selectPage(ipage,null).getRecords() ) {
             billEx = new BillEx();
             BeanUtils.copyProperties(bill, billEx);
+            billEx.setCreationDateStr(TimeFormat.TIME_FORMAT.getFormat().format(bill.getCreationDate()));
             billEx.setProvider(providerService.findProviderById(bill.getProviderId()));
             bills.add(billEx);
         }

@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -27,8 +28,8 @@ public class Bill {
     private Integer isPayment; //是否支付 1未支付 2以支付
     private Integer providerId; //供应商ID
     private long createdBy; //创建者
-    private Date creationDate; //创建时间
+    private LocalDate creationDate; //创建时间
     private long modifyBy; //更新者
-    private Date modifyDate;//更新时间
+    private LocalDate modifyDate;//更新时间
 
 }

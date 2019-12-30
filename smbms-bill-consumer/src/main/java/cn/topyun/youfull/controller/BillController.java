@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Map;
+
 
 @Controller
 public class BillController {
@@ -16,8 +18,9 @@ public class BillController {
 
 
     @RequestMapping("/toMain")
+  //  @ResponseBody
     public String toMain(String num, Model model){
-        model.addAttribute("maps",billService.toBillMain(num));
+       model.addAttribute("maps",billService.toBillMain(num));
        return "billList";
     }
 

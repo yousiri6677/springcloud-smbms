@@ -6,4 +6,5 @@ import lombok.Data;
 public class BillEx extends Bill {
 
     private Provider provider;
+    private String creationDateStr;
 }
