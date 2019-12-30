@@ -10,31 +10,32 @@
         <relativePath>../../smbms-dependencies/pom.xml</relativePath>
     </parent>
 
-    <artifactId>smbms-provider-provider</artifactId>
+    <artifactId>smbms-bill-provider</artifactId>
     <packaging>jar</packaging>
 
-    <name>smbms-provider-provider</name>
+    <name>smbms-bill-provider</name>
 
 
     <dependencies>
 
         <!-- Spring Boot Begin -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-      <!--  <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>-->
+        <!--  <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-actuator</artifactId>
+          </dependency>-->
+
         <!--MP-->
 
-       <!--引用实体类-->
+        <!--引用实体类-->
         <dependency>
             <groupId>cn.youfull</groupId>
             <artifactId>smbms-commons-entity</artifactId>
@@ -53,6 +54,10 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
         <!-- Spring Cloud End -->
     </dependencies>
     <build>
@@ -61,7 +66,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>cn.topyun.youfull.ProviderApplication</mainClass>
+                    <mainClass>cn.topyun.youfull.BillApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

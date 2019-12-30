@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>超市订单管理系统</title>
+    <link type="text/css" rel="stylesheet" href="/css/style.css">
+    <link type="text/css" rel="stylesheet" href="/css/public.css">
+    <link href="/calendar/skin/WdatePicker.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+</head>
+<body>
+<!--头部-->
+<div th:replace="public/head::head"></div>
+<!--时间-->
+<div th:replace="public/time::time"></div>
+<!--主体内容-->
+<section class="publicMian ">
+
+    <div th:replace="public/left::left"></div>
+
+    <div class="right">
+        <div class="location">
+            <strong>你现在所在的位置是:</strong>
+            <span>订单管理页面</span>
+        </div>
+        <div class="search">
+            <form method="post" th:action="@{#}">
+                <input name="method" value="query" class="input-text" type="hidden">
+                <span>商品名称：</span>
+                <input id="queryProductName" type="text" value="">
+                <span>供应商：</span>
+                <select name="queryProviderId" th:name="providerId" class="providerId">
+                    <option value="0">--请选择--</option>
+                    <option th:each="p:${maps.providers}" th:value="${p.id}">[[${p.proName}]]</option>
+                </select>
+
+                <span>是否付款：</span>
+                <select name="queryIsPayment" th:class="isPayment">
+                    <option value="0">--请选择--</option>
+                    <option value="1">未付款</option>
+                    <option value="2">已付款</option>
+                </select>
+                <input value="查 询" type="button" id="searchbutton">
+                <a href="#" th:href="@{#}">添加订单</a>
+            </form>
+        </div>
+        <script type="text/javascript">
+            $("#searchbutton").click(function () {
+                var name = $("#queryProductName").val();
+                var id = $("providerId").val()*1;
+                var isPay =$(".isPayment").val()*1;
+                $("form").attr("action", "/bill/findBill/"+name+"/"+id+"/"+isPay).submit();
+            })
+        </script>
+        <!--账单表格 样式和供应商公用-->
+        <table class="providerTable" cellpadding="0" cellspacing="0">
+            <tbody>
+            <tr class="firstTr">
+                <th width="10%">订单编码</th>
+                <th width="20%">商品名称</th>
+                <th width="10%">供应商</th>
+                <th width="10%">订单金额</th>
+                <th width="10%">是否付款</th>
+                <th width="10%">创建时间</th>
+                <th width="30%">操作</th>
+            </tr>
+
+            <tr th:each="bill : ${maps.bills}">
+                <td>
+                    <span>[[${bill.billCode}]]</span>
+                </td>
+                <td>
+                    <span>[[${bill.productName}]]</span>
+                </td>
+                <td>
+                    <span>[[${bill.provider.proName}]]</span>
+                </td>
+                <td>
+                    <span>[[${bill.totalPrice}]]</span>
+                </td>
+                <td>
+                    <span>[[${bill.isPayment eq 1}?'未支付':'已支付']]</span>
+                </td>
+                <td>
+                    <span>[[${#dates.format(bill.creationDate,'yyyy-MM-dd')}]]</span>
+                </td>
+                <td>
+                    <span><a class="viewBill" href="javascript:;"
+                             th:attr="billcc=${bill.billCode},billid=${bill.id}"><img
+                            src="/images/read.png" alt="查看" title="查看"></a></span>
+                    <span><a class="modifyBill" href="javascript:;" th:attr="billcc=${bill.billCode},billid=${bill.id}"><img
+                            src="/images/xiugai.png" alt="修改" title="修改"></a></span>
+                    <span><a class="deleteBill" href="javascript:;" th:attr="billcc=${bill.billCode},billid=${bill.id}"><img
+                            src="/images/schu.png" alt="删除" title="删除"></a></span>
+                </td>
+            </tr>
+
+            </tbody>
+        </table>
+
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Insert title here</title>
+        <input hidden id="page_Num" th:value="${maps.pageCurrent}"/>
+        <div class="page-bar">
+            <ul class="page-num-ul clearfix">
+                <li>共<span th:id="totalPageCount">[[${maps.pageTotal}]]</span>条记录&nbsp;&nbsp;[[${maps.pageCurrent}]]/[[${maps.pageNum}]]页
+                </li>&nbsp;
+                <a th:href="@{/toMain}+'?num='+${maps.pageCurrent-1}">上一页</a>
+                <a th:href="@{/toMain}+'?num='+${maps.pageCurrent+1}">下一页</a>
+                <a th:href="@{/toMain}+'?num='+${maps.pageNum}">最后一页</a>
+            </ul>
+            <span class="page-go-form"><label>跳转至</label>
+	     <input type="text" th:name="pageNum" id="inputPage" class="page-key">页
+	     <button type="button" class="page-btn"
+                 onclick="jump_to(document.forms[0],document.getElementById(&quot;inputPage&quot;).value)">GO</button>
+		</span>
+        </div>
+        <script type="text/javascript" src="/js/rollpage.js"></script>
+    </div>
+</section>
+
+<!--点击删除按钮后弹出的页面-->
+<div class="zhezhao"></div>
+<div class="remove" id="removeBi">
+    <div class="removerChid">
+        <h2>提示</h2>
+        <div class="removeMain">
+            <p>你确定要删除该订单吗？</p>
+            <a href="javascript:;" id="yes">确定</a>
+            <a href="javascript:;" id="no">取消</a>
+        </div>
+    </div>
+</div>
+<!--脚部-->
+<div th:replace="public/footer::footer"></div>
+
+<script type="text/javascript" src="/js/time.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="/calendar/WdatePicker.js"></script>
+
+
+<script type="text/javascript" src="/js/billlist.js"></script>
+<div style="position: absolute; z-index: 19700; top: -1970px; left: -1970px;">
+    <iframe style="width: 186px; height: 197px;"
+            src="http://localhost:8080/Chapter12/statics/calendar/My97DatePicker.htm" frameborder="0" border="0"
+            scrolling="no"></iframe>
+</div>
+</body>
+</html>

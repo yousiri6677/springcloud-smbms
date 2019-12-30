@@ -10,14 +10,12 @@
         <relativePath>../../smbms-dependencies/pom.xml</relativePath>
     </parent>
 
-    <artifactId>smbms-provider-provider</artifactId>
+    <artifactId>smbms-bill-consumer</artifactId>
     <packaging>jar</packaging>
 
-    <name>smbms-provider-provider</name>
-
+    <name>smbms-bill-consumer</name>
 
     <dependencies>
-
         <!-- Spring Boot Begin -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -28,24 +26,24 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-      <!--  <dependency>
+        <!--  <dependency>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-starter-actuator</artifactId>
+          </dependency>-->
+        <!--thymeleaf-->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>-->
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
         <!--MP-->
 
-       <!--引用实体类-->
+        <!--引用实体类-->
         <dependency>
             <groupId>cn.youfull</groupId>
             <artifactId>smbms-commons-entity</artifactId>
             <version>${project.parent.version}</version>
         </dependency>
-        <!--mysql数据库-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <scope>runtime</scope>
-        </dependency>
+
         <!-- Spring Boot End -->
 
         <!-- Spring Cloud Begin -->
@@ -53,15 +51,20 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
         <!-- Spring Cloud End -->
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>cn.topyun.youfull.ProviderApplication</mainClass>
+                    <mainClass>cn.topyun.youfull.BillConsumerApplication</mainClass>
                 </configuration>
             </plugin>
         </plugins>

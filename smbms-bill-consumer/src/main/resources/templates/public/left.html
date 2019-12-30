@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="left" th:fragment="left">
+    <h2 class="leftH2">
+        <span class="span1"></span>功能列表 <span></span>
+    </h2>
+    <nav>
+        <ul class="list">
+            <li><a href="#" th:href="@{/bill/billList}">订单管理</a>
+            </li>
+            <li><a href="#" th:href="@{#}">供应商管理</a>
+            </li>
+            <li><a href="#" th:href="@{#}">用户管理</a>
+            </li>
+            <li><a th:href="@{#}">密码修改</a>
+            </li>
+            <li><a th:href="@{#}">退出系统</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+</body>
+</html>

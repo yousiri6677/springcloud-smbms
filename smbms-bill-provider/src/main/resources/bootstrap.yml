@@ -1,6 +1,6 @@
 spring:
   application:
-    name: smbms-provider-provider
+    name: smbms-bill-provider
   cloud:
     nacos:
       discovery:
@@ -12,8 +12,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 server:
-  port: 8081
-
+  port: 8082
 
 management:
   endpoints:
@@ -26,3 +25,5 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: false
 
+#分页容量
+pagesize : 5
