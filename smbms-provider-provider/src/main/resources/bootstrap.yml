@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: smbms-provider-provider
+    cloud:
+      nacos:
+        discovery:
+          server-addr: 127.0.0.1:8848
+  datasource:
+    url: jdbc:mysql://localhost:3306/smbms?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    data-username: root
+    data-password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 8081
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: false
+
