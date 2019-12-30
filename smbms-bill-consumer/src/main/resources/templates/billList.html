@@ -80,9 +80,10 @@
                 </td>
                 <td>
                     <span>[[${bill.isPayment eq 1}?'未支付':'已支付']]</span>
-                </td>
+                </td>#
                 <td>
-                    <span>[[${#dates.format(bill.creationDate,'yyyy-MM-dd')}]]</span>
+                   <!-- <span>[[${temporals.format(bill.creationDate,'yyyy-MM-dd HH:mm:ss')}]]</span>-->
+                    <span>[[bill.creationDate]]</span>
                 </td>
                 <td>
                     <span><a class="viewBill" href="javascript:;"

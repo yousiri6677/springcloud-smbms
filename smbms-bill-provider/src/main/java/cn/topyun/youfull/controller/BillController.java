@@ -13,7 +13,6 @@ import java.util.Map;
 
 @RequestMapping("/bill")
 @Controller
-
 public class BillController {
 
     @Resource
@@ -23,11 +22,11 @@ public class BillController {
     private ProviderService providerService;
 
     @RequestMapping("/billList")
-    public String toBillMain(String num, Model model) {
+    @ResponseBody
+    public Map toBillMain(String num) {
         Map<String, Object> allBills = billService.findAllBills(num == null ? 1 : Integer.parseInt(num));
         allBills.put("providers", providerService.findAllProviders());
-        model.addAttribute("maps", allBills);
-        return "billList";
+        return allBills;
     }
 
     @RequestMapping("/delBill")
