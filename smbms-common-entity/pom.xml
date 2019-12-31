@@ -23,6 +23,10 @@
         </dependency>
         <!-- Projects Begin -->
         <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+        </dependency>
+        <dependency>
             <groupId>cn.youfull</groupId>
             <artifactId>smbms-commons</artifactId>
             <version>${project.parent.version}</version>
