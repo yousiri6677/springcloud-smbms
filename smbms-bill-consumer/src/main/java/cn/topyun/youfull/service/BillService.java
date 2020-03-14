@@ -1,6 +1,7 @@
 package cn.topyun.youfull.service;
 
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -17,6 +18,8 @@ public interface BillService {
      * @return
      */
 
+    @GetMapping("/bill/get")
+    String get();
 //    Map<String,Object> findAllBills(@RequestParam(value = "pageNum") Integer pageNum,@RequestParam(value = "provider")  Provider provider);
     @RequestMapping(value = "/bill/billList", method = RequestMethod.GET)
     Map toBillMain(@RequestParam(value = "num") String num);

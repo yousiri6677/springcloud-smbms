@@ -45,11 +45,11 @@
             <version>${project.parent.version}</version>
         </dependency>
         <!--mysql数据库-->
-        <dependency>
+      <!--  <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <scope>runtime</scope>
-        </dependency>
+        </dependency>-->
         <!-- Spring Boot End -->
 
         <!-- Spring Cloud Begin -->

@@ -4,6 +4,7 @@ import cn.topyun.youfull.service.BillService;
 import cn.topyun.youfull.service.ProviderService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,6 +43,11 @@ public class BillController {
         }
         System.out.println(data);
         return data;
+    }
+    @GetMapping("/get")
+    @ResponseBody
+    public String get(){
+        return "123";
     }
 
     @RequestMapping("/findBill/{id}/{isPay}")

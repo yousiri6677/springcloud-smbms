@@ -4,6 +4,7 @@ import cn.topyun.youfull.service.BillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,7 +17,10 @@ public class BillController {
     @Autowired
     private BillService billService;
 
-
+    @GetMapping("/get")
+    public String get(){
+        return billService.get();
+    }
     @RequestMapping("/toMain")
   //  @ResponseBody
     public String toMain(String num, Model model){
